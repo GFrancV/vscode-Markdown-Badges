@@ -1,0 +1,65 @@
+{
+  "name": "vscode-markdown-badges",
+  "displayName": "Markdown Badges",
+  "description": "Insert badges from markdown-badges.vercel.app directly into your files",
+  "version": "0.1.0",
+  "publisher": "gfrancv",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Snippets",
+    "Other"
+  ],
+  "keywords": [
+    "markdown",
+    "badges",
+    "shields",
+    "readme"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "markdownBadges.insertBadge",
+        "title": "Insert Badge(s)",
+        "category": "Markdown Badges"
+      },
+      {
+        "command": "markdownBadges.browseByCategory",
+        "title": "Browse by Category",
+        "category": "Markdown Badges"
+      },
+      {
+        "command": "markdownBadges.clearCache",
+        "title": "Clear Cache",
+        "category": "Markdown Badges"
+      }
+    ],
+    "configuration": {
+      "title": "Markdown Badges",
+      "properties": {
+        "markdownBadges.apiUrl": {
+          "type": "string",
+          "default": "https://markdown-badges.vercel.app/api",
+          "description": "Base URL of the Markdown Badges API"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "node esbuild.js --production",
+    "compile": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "lint": "tsc --noEmit",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.0.0",
+    "esbuild": "^0.23.0",
+    "typescript": "^5.4.0"
+  }
+}
