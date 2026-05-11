@@ -43,17 +43,7 @@
         "title": "Clear Cache",
         "category": "Markdown Badges"
       }
-    ],
-    "configuration": {
-      "title": "Markdown Badges",
-      "properties": {
-        "markdownBadges.apiUrl": {
-          "type": "string",
-          "default": "https://markdown-badges.vercel.app/api",
-          "description": "Base URL of the Markdown Badges API"
-        }
-      }
-    }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "node esbuild.js --production",
