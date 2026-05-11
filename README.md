@@ -33,7 +33,7 @@
 
 Insert badges from [markdown-badges.vercel.app](https://markdown-badges.vercel.app) directly into any Markdown file — 858+ badges across 50+ categories, always sourced live from the API.
 
-[Screenshot](./images/screenshot.gif)
+![Screenshot](images/screenshot.gif)
 
 ## How to use
 
