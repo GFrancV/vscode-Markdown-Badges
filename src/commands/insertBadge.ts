@@ -80,13 +80,18 @@ export async function insertBadge(client: BadgeApiClient): Promise<void> {
     updateTitle();
   });
 
+  let filterDebounce: ReturnType<typeof setTimeout> | undefined;
+
   quickPick.onDidChangeValue((query) => {
-    const newItems = toBadgeItems(filterBadges(allBadges, query));
-    suppressSelectionEvent = true;
-    quickPick.items = newItems;
-    quickPick.selectedItems = newItems.filter((i) => selectedIds.has(i.badge.id));
-    suppressSelectionEvent = false;
-    updateTitle();
+    clearTimeout(filterDebounce);
+    filterDebounce = setTimeout(() => {
+      const newItems = toBadgeItems(filterBadges(allBadges, query));
+      suppressSelectionEvent = true;
+      quickPick.items = newItems;
+      quickPick.selectedItems = newItems.filter((i) => selectedIds.has(i.badge.id));
+      suppressSelectionEvent = false;
+      updateTitle();
+    }, 150);
   });
 
   quickPick.onDidAccept(() => {
@@ -97,7 +102,10 @@ export async function insertBadge(client: BadgeApiClient): Promise<void> {
     quickPick.hide();
   });
 
-  quickPick.onDidHide(() => quickPick.dispose());
+  quickPick.onDidHide(() => {
+    clearTimeout(filterDebounce);
+    quickPick.dispose();
+  });
 
   quickPick.show();
 }
